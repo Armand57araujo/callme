@@ -1,4 +1,6 @@
 const path = require('path');
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 module.exports = () => {
   return {
@@ -17,6 +19,22 @@ module.exports = () => {
 
     // TODO: Add the correct plugins
     plugins: [
+      new CleanWebpackPlugin(),
+      new HtmlWebpackPlugin({
+        template: './src/index.html',
+        filename: 'index.html',
+        chunks: ['main']
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/install.html',
+        filename: 'install.html',
+        chunks: ['install']
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/cards.html',
+        filename: 'cards.html',
+        chunks: ['cards']
+      }),
      
     ],
 
