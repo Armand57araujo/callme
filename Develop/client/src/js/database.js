@@ -30,11 +30,27 @@ export const postDb = async (name, home, cell, email)  => {
 
 // TODO: Complete the getDb() function below:
 export const getDb = async () => {
+    console.log('Get from the database');
+    const contactsDb = await openDB('contacts', 1);
+    const tx = contactsDb.transaction('contacts', 'readonly');
+    const store = tx.objectStore('contacts');
+    const request = store.getAll();
+    const result = await request;
+    console.log('Data retrieved from the database', result);
+    return result;
   
 };
 
 // TODO: Complete the deleteDb() function below:
 export const deleteDb = async (id) => {
+    console.log('Delete from the database');
+    const contactsDb = await openDB('contacts', 1);
+    const tx = contactsDb.transaction('contacts', 'readwrite');
+    const store = tx.objectStore('contacts');
+    const request = store.delete(id);
+    const result = await request;
+    console.log('Data deleted from the database', result);
+    return result;
   
 };
 
